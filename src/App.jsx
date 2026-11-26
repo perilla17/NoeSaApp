@@ -4,7 +4,7 @@ export default function App() {
       <header className="site-header">
         <div className="container wordmark">
           <span className="equalizer" aria-hidden="true"><i /><i /><i /><i /></span>
-          FestiApp
+          NoeSaApp
         </div>
       </header>
       <main className="container">

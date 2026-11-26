@@ -1,4 +1,4 @@
-# FestiApp
+# NoeSaApp
 
 Aplicación de React y Vite para administrar artistas y presentaciones de un festival musical. Esta base muestra la pantalla inicial de presentaciones y se puede ejecutar antes de conectar la API.
 
