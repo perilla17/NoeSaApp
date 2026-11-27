@@ -33,3 +33,14 @@ Los componentes `ListaPresentaciones.jsx` y `FormularioPresentacion.jsx` irán e
 | `DELETE /presentaciones/:id` | Eliminar la presentación seleccionada. |
 
 Antes de conectar la API, acuerden con el integrante 1 la URL base, los nombres de los campos y el tipo de los identificadores. El modelo propuesto para una presentación incluye `id`, `artistaId`, `escenario`, `fecha` y `hora`. Un mismo artista puede tener varias presentaciones.
+
+## API simulada (JSON Server)
+
+La API usa `json-server` 0.17.4 con los datos de `db.json`. Se levanta con `npm run api` en `http://localhost:3001`. La URL base se puede cambiar con `VITE_API_URL` (ver `.env.example`) y está centralizada en `src/services/api.js`, que también exporta la función `request` para reutilizarla en `presentacionesService.js`.
+
+| Recurso | Campos |
+| --- | --- |
+| `/artistas` | `id` (número), `nombre`, `genero`, `pais` |
+| `/presentaciones` | `id` (número), `artistaId` (número, id de un artista), `escenario`, `fecha` (`AAAA-MM-DD`), `hora` (`HH:MM`) |
+
+Módulo de artistas: `FormularioArtista.jsx` (POST `/artistas`, con validaciones y mensajes) y `ListaArtistas.jsx` (GET `/artistas`), ambos apoyados en `services/artistasService.js`.

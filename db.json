@@ -1,0 +1,16 @@
+{
+  "artistas": [
+    { "id": 1, "nombre": "Carlos Vives", "genero": "Vallenato pop", "pais": "Colombia" },
+    { "id": 2, "nombre": "Aterciopelados", "genero": "Rock alternativo", "pais": "Colombia" },
+    { "id": 3, "nombre": "Bomba Estéreo", "genero": "Electrónica", "pais": "Colombia" },
+    { "id": 4, "nombre": "Natalia Lafourcade", "genero": "Pop folk", "pais": "México" },
+    { "id": 5, "nombre": "Rosalía", "genero": "Flamenco pop", "pais": "España" }
+  ],
+  "presentaciones": [
+    { "id": 1, "artistaId": 1, "escenario": "Escenario Principal", "fecha": "2027-03-12", "hora": "20:00" },
+    { "id": 2, "artistaId": 2, "escenario": "Escenario Bosque", "fecha": "2027-03-12", "hora": "18:30" },
+    { "id": 3, "artistaId": 3, "escenario": "Escenario Electrónico", "fecha": "2027-03-13", "hora": "22:00" },
+    { "id": 4, "artistaId": 4, "escenario": "Escenario Principal", "fecha": "2027-03-13", "hora": "20:30" },
+    { "id": 5, "artistaId": 1, "escenario": "Escenario Bosque", "fecha": "2027-03-14", "hora": "17:00" }
+  ]
+}
