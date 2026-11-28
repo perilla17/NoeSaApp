@@ -1,34 +1,4 @@
-import { useEffect, useState } from 'react'
-import { getArtistas } from '../services/artistasService.js'
-
-// recarga: número que el padre incrementa para volver a pedir los artistas
-// (por ejemplo, después de registrar uno nuevo).
-export default function ListaArtistas({ recarga = 0 }) {
-  const [artistas, setArtistas] = useState([])
-  const [cargando, setCargando] = useState(true)
-  const [error, setError] = useState(null)
-  const [intento, setIntento] = useState(0)
-
-  useEffect(() => {
-    let activo = true
-
-    async function cargar() {
-      setCargando(true)
-      setError(null)
-      try {
-        const datos = await getArtistas()
-        if (activo) setArtistas(datos)
-      } catch (e) {
-        if (activo) setError(e.message)
-      } finally {
-        if (activo) setCargando(false)
-      }
-    }
-
-    cargar()
-    return () => { activo = false }
-  }, [recarga, intento])
-
+export default function ListaArtistas({ datos: artistas, cargando, error, recargar }) {
   return (
     <section className="panel" aria-labelledby="lista-artistas-title">
       <h2 id="lista-artistas-title">Artistas del festival</h2>
@@ -38,7 +8,7 @@ export default function ListaArtistas({ recarga = 0 }) {
       {error && (
         <div className="mensaje mensaje-error" role="alert">
           <p>{error}</p>
-          <button type="button" className="boton boton-secundario" onClick={() => setIntento((n) => n + 1)}>
+          <button type="button" className="boton boton-secundario" onClick={recargar}>
             Reintentar
           </button>
         </div>

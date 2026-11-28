@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import ListaArtistas from './components/ListaArtistas.jsx'
 import FormularioArtista from './components/FormularioArtista.jsx'
+import FormularioPresentacion from './components/FormularioPresentacion.jsx'
+import ListaPresentaciones from './components/ListaPresentaciones.jsx'
+import useListado from './hooks/useListado.js'
+import { getArtistas } from './services/artistasService.js'
 
 export default function App() {
-  // Cada vez que se registra un artista, se incrementa para recargar el listado.
-  const [recargaArtistas, setRecargaArtistas] = useState(0)
+  const artistas = useListado(getArtistas)
+  const [versionAgenda, setVersionAgenda] = useState(0)
 
   return (
     <>
@@ -19,14 +23,14 @@ export default function App() {
 
         {/* Módulo de artistas (Integrante 1) */}
         <div className="grid-artistas">
-          <FormularioArtista onArtistaCreado={() => setRecargaArtistas((n) => n + 1)} />
-          <ListaArtistas recarga={recargaArtistas} />
+          <FormularioArtista onArtistaCreado={artistas.recargar} />
+          <ListaArtistas {...artistas} />
         </div>
 
-        <section className="agenda" aria-labelledby="agenda-title">
-          <h2 id="agenda-title">Agenda del festival</h2>
-          <p>Aquí podrás consultar los artistas, escenarios y horarios cuando se conecte la API.</p>
-        </section>
+        <div className="programacion">
+          <FormularioPresentacion artistas={artistas} onCreada={() => setVersionAgenda(n => n + 1)} />
+          <ListaPresentaciones artistas={artistas.datos} version={versionAgenda} />
+        </div>
       </main>
     </>
   )

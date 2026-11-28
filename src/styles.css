@@ -62,3 +62,23 @@ h1 { margin: 0 0 1.5rem; font-size: clamp(2.1rem, 6vw, 3.8rem); line-height: 1.1
 .tarjeta-artista { display: grid; gap: .1rem; padding: .7rem .9rem; background: #f7f6fb; border-left: 4px solid #7765af; border-radius: .4rem; }
 .tarjeta-artista span { color: #545368; font-size: .92rem; }
 .tarjeta-artista .pais { font-size: .85rem; }
+
+.programacion { display: grid; gap: 1.5rem; align-items: start; }
+.panel-agenda { min-width: 0; border-top-color: #7765af; }
+.campos-agenda { display: grid; gap: 1rem; margin: 0; padding: 0; border: 0; min-width: 0; }
+.campos-agenda .campo { min-width: 0; font-weight: 600; }
+.campos-agenda input, .campos-agenda select { width: 100%; min-width: 0; color: #202044; font-weight: 400; }
+.campos-agenda select { padding: .6rem .75rem; font: inherit; font-weight: 400; background: white; border: 1px solid #c9c7da; border-radius: .5rem; }
+.fecha-hora { display: grid; grid-template-columns: 1.3fr 1fr; gap: .75rem; }
+.lista-agenda { padding: 0; margin: 0; list-style: none; }
+.lista-agenda li { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: .6rem; padding: .85rem 0; border-bottom: 1px solid #dedcea; }
+.lista-agenda li:last-child { border-bottom: 0; }
+.lista-agenda strong, .lista-agenda span, .lista-agenda time { display: block; overflow-wrap: anywhere; }
+.lista-agenda span, .lista-agenda time { font-size: .9rem; color: #545368; }
+.confirmar-agenda > div { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem; }
+.accion-eliminar, .accion-cancelar { border: 1px solid #c9c7da; background: white; border-radius: .4rem; padding: .4rem .65rem; font: inherit; font-size: .87rem; cursor: pointer; }
+.accion-eliminar { color: #8c1d18; }
+.accion-cancelar { color: #202044; }
+.accion-eliminar:hover, .accion-cancelar:hover { background: #f7f6fb; }
+.panel-agenda button:focus-visible, .panel-agenda select:focus-visible { outline: 3px solid #7765af; outline-offset: 2px; }
+@media (min-width: 48rem) { .programacion { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } }

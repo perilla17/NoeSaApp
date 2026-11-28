@@ -20,5 +20,6 @@ export async function request(path, options = {}) {
     throw new Error(`La API respondió con error ${respuesta.status}.`)
   }
 
+  if (respuesta.status === 204) return null
   return respuesta.json()
 }
