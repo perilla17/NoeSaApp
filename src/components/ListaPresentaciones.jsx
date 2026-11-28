@@ -2,7 +2,7 @@ import { useState } from 'react'
 import useListado from '../hooks/useListado.js'
 import { eliminarPresentacion, getPresentaciones } from '../services/presentacionesService.js'
 
-export default function ListaPresentaciones({ artistas, version }) {
+export default function ListaPresentaciones({ artistas, version, onCambio }) {
   const { datos, cargando, error, recargar } = useListado(getPresentaciones, version)
   const [seleccionada, setSeleccionada] = useState(null)
   const [eliminando, setEliminando] = useState(false)
@@ -25,6 +25,7 @@ export default function ListaPresentaciones({ artistas, version }) {
       await eliminarPresentacion(presentacion.id)
       setSeleccionada(null)
       setMensaje({ tipo: 'exito', texto: `Se eliminó la presentación de ${nombre} en ${presentacion.escenario}.` })
+      onCambio?.()
       recargar()
     } catch (e) {
       setMensaje({ tipo: 'error', texto: e.message })

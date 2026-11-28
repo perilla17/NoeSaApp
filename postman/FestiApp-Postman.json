@@ -1,0 +1,45 @@
+{
+  "info": {
+    "_postman_id": "5ea35b81-5ff8-4ed8-a0d9-8a3a8d6a9f51",
+    "name": "FestiApp - seis pruebas API",
+    "description": "Secuencia solicitada: consulta y creación de artista, consulta y creación de presentación, eliminación de la presentación y verificación final. Requiere JSON Server en localhost:3001.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3001", "type": "string" },
+    { "key": "artistaId", "value": "", "type": "string" },
+    { "key": "presentacionId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "1. GET artistas disponibles",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/artistas" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Responde 200 y entrega un listado de artistas', function () {", "  pm.response.to.have.status(200);", "  pm.expect(pm.response.json()).to.be.an('array');", "});"] } }]
+    },
+    {
+      "name": "2. POST crear artista de prueba",
+      "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nombre\": \"Artista Postman FestiApp\",\n  \"genero\": \"Indie\",\n  \"pais\": \"Colombia\"\n}", "options": { "raw": { "language": "json" } } }, "url": "{{baseUrl}}/artistas" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Crea el artista y devuelve su id numérico', function () {", "  pm.response.to.have.status(201);", "  const artista = pm.response.json();", "  pm.expect(artista.id).to.exist;", "  pm.collectionVariables.set('artistaId', artista.id);", "});"] } }]
+    },
+    {
+      "name": "3. GET agenda antes del registro",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/presentaciones" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Responde 200 con la agenda antes del alta', function () {", "  pm.response.to.have.status(200);", "  pm.expect(pm.response.json()).to.be.an('array');", "});"] } }]
+    },
+    {
+      "name": "4. POST crear presentación vinculada",
+      "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"artistaId\": {{artistaId}},\n  \"escenario\": \"Escenario Postman\",\n  \"fecha\": \"2027-03-20\",\n  \"hora\": \"19:15\"\n}", "options": { "raw": { "language": "json" } } }, "url": "{{baseUrl}}/presentaciones" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Crea la presentación con artistaId y un id propio', function () {", "  pm.response.to.have.status(201);", "  const presentacion = pm.response.json();", "  pm.expect(String(presentacion.artistaId)).to.eql(String(pm.collectionVariables.get('artistaId')));", "  pm.expect(presentacion.id).to.exist;", "  pm.collectionVariables.set('presentacionId', presentacion.id);", "});"] } }]
+    },
+    {
+      "name": "5. DELETE presentación creada",
+      "request": { "method": "DELETE", "header": [], "url": "{{baseUrl}}/presentaciones/{{presentacionId}}" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Elimina la presentación creada', function () {", "  pm.expect([200, 204]).to.include(pm.response.code);", "});"] } }]
+    },
+    {
+      "name": "6. GET agenda y verificar eliminación",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/presentaciones" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('La agenda ya no contiene el id eliminado', function () {", "  pm.response.to.have.status(200);", "  const agenda = pm.response.json();", "  pm.expect(agenda).to.be.an('array');", "  pm.expect(agenda.some(p => String(p.id) === String(pm.collectionVariables.get('presentacionId')))).to.eql(false);", "});"] } }]
+    }
+  ]
+}

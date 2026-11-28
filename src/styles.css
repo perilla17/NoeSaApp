@@ -82,3 +82,49 @@ h1 { margin: 0 0 1.5rem; font-size: clamp(2.1rem, 6vw, 3.8rem); line-height: 1.1
 .accion-eliminar:hover, .accion-cancelar:hover { background: #f7f6fb; }
 .panel-agenda button:focus-visible, .panel-agenda select:focus-visible { outline: 3px solid #7765af; outline-offset: 2px; }
 @media (min-width: 48rem) { .programacion { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } }
+
+/* Identidad visual de FestiApp */
+:root { color: #18231f; background: #f4f5ef; font-family: Inter, "Segoe UI", system-ui, sans-serif; }
+body { min-width: 320px; background: radial-gradient(ellipse at 88% 8%, #e7eddb 0, transparent 34rem), #f4f5ef; }
+.container { width: min(72rem, calc(100% - 2.5rem)); }
+.site-header { position: sticky; top: 0; z-index: 5; background: rgba(24, 35, 31, .96); backdrop-filter: blur(12px); }
+.navbar { min-height: 4.5rem; display: flex; align-items: center; justify-content: space-between; }
+.wordmark { padding-block: .75rem; color: white; text-decoration: none; letter-spacing: -.035em; }
+.wordmark-acento { color: #c6f36b; }
+.equalizer i { background: #c6f36b; }
+.enlace-nav { color: #f4f5ef; text-decoration: none; font-size: .92rem; font-weight: 650; }
+.enlace-nav:hover { color: #c6f36b; }
+main { padding-block: 0 4rem; }
+.hero { position: relative; overflow: hidden; padding: clamp(3.5rem, 10vw, 7.25rem) 0 clamp(3rem, 8vw, 5.5rem); }
+.hero::after { content: '♫'; position: absolute; right: 5%; top: 5%; color: #e5ebd9; font-size: clamp(12rem, 32vw, 27rem); line-height: .9; font-weight: 800; z-index: -1; transform: rotate(-12deg); }
+.etiqueta-seccion { margin: 0 0 .65rem; color: #68764f; font-size: .73rem; font-weight: 800; letter-spacing: .14em; }
+.hero h1 { max-width: 13ch; margin: 0; color: #18231f; font-size: clamp(2.7rem, 7vw, 5.6rem); letter-spacing: -.065em; line-height: .98; }
+.bajada { max-width: 42ch; margin: 1.15rem 0 1.5rem; color: #5c665e; font-size: clamp(1rem, 2vw, 1.2rem); }
+.boton-hero { display: inline-flex; gap: 1rem; align-items: center; background: #c6f36b; color: #18231f; text-decoration: none; }
+.boton-hero:hover:not(:disabled) { background: #b3e653; }
+.grid-artistas { margin-bottom: 3.25rem; gap: 1.25rem; }
+.panel { border: 1px solid #e1e4d8; border-top: 4px solid #c6f36b; border-radius: 1rem; box-shadow: 0 14px 40px #1d2c1c0a; }
+.panel h2 { color: #18231f; }
+.programacion { gap: 1.25rem; }
+.seccion-programacion { padding: 1.5rem 0 2.5rem; scroll-margin-top: 5rem; }
+.titulo-seccion { display: flex; align-items: end; justify-content: space-between; margin: 0 0 1.25rem; }
+.titulo-seccion h2 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.65rem); line-height: 1; letter-spacing: -.05em; }
+.panel-agenda { border-top-color: #c6f36b; }
+.boton { background: #334b37; }
+.boton:hover:not(:disabled) { background: #24382a; }
+.boton-secundario { background: #334b37; }
+.panel-consulta { margin-top: 2rem; border-top-color: #7765af; scroll-margin-top: 5rem; }
+.encabezado-consulta { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.encabezado-consulta h2 { margin: 0; }
+.contador-consulta { flex: 0 0 auto; padding: .35rem .7rem; border-radius: 99px; color: #4c3f79; background: #f0edfa; font-weight: 700; font-size: .82rem; }
+.panel-consulta select { width: 100%; padding: .65rem .75rem; font: inherit; border: 1px solid #c9c7da; border-radius: .5rem; background: white; }
+.lista-consulta { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: .75rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.lista-consulta li { display: flex; align-items: center; gap: .85rem; padding: .85rem; border: 1px solid #e1e4d8; background: #fbfcf8; border-radius: .7rem; }
+.lista-consulta li div { min-width: 0; }
+.lista-consulta strong, .lista-consulta li div span { display: block; overflow-wrap: anywhere; }
+.lista-consulta li div span { color: #68716a; font-size: .9rem; }
+.fecha-consulta { flex: 0 0 auto; display: grid; place-items: center; min-width: 4.35rem; min-height: 3.6rem; padding: .35rem; border-radius: .55rem; color: #283d2b; background: #eaf3dc; font-size: .82rem; font-weight: 800; text-align: center; }
+.site-footer { border-top: 1px solid #e1e4d8; color: #667068; font-size: .88rem; }
+.site-footer .container { padding-block: 1.35rem; }
+.site-footer span { color: #91aa5e; padding-inline: .3rem; }
+@media (max-width: 38rem) { .container { width: calc(100% - 1.5rem); } .hero::after { right: -10%; top: 20%; opacity: .7; } .lista-agenda li { align-items: start; } }

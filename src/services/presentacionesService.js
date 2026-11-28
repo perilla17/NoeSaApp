@@ -6,6 +6,11 @@ export function getPresentaciones() {
   return request(recurso)
 }
 
+// JSON Server aplica el filtro en la API, conservando artistaId como criterio.
+export function getPresentacionesPorArtista(artistaId) {
+  return request(`${recurso}?artistaId=${encodeURIComponent(artistaId)}`)
+}
+
 export function crearPresentacion(datos) {
   return request(recurso, { method: 'POST', body: JSON.stringify(datos) })
 }
